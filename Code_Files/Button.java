@@ -25,7 +25,7 @@ public class Button implements MouseListener {
    *
    * 
    */
-  public Button( Color c, int h, int w, int x, int y, int ref, DrawingCanvas can ) {
+  public Button( Color c, int h, int w, int x, int y, ParkGo ref, DrawingCanvas can ) {
     
     //Saving all the formal parameters into instance variables. 
     color = c;
@@ -40,6 +40,9 @@ public class Button implements MouseListener {
 
     button = new FilledRect( buttonX, buttonY, width, height, canvas );
     button.setColor( color );
+
+    //Have this button object be able to listen to mouse clicks on the canvas window.     
+    canvas.addMouseListener( this );
 
   } //end of the Button constructor
 
@@ -62,7 +65,7 @@ public class Button implements MouseListener {
       int newRed = color.getRed() + (255 - color.getRed()) * 1/2;
       int newGreen = color.getGreen() + (255 - color.getGreen()) * 1/2;
       int newBlue = color.getBlue() + (255 - color.getBlue()) * 1/2;
-      button.setColor( newRed, newGreen, newBlue );
+      button.setColor( new Color( newRed, newGreen, newBlue ) );
     }
   }
 

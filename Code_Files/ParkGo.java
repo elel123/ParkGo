@@ -19,6 +19,9 @@ public class ParkGo extends WindowController {
    */
 	public void begin() {
 
+    //Make the window be the main focus when the program starts
+    canvas.requestFocusInWindow();
+
 	} //end of the begin method
 
 
