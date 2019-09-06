@@ -49,16 +49,15 @@ public class Button implements MouseListener {
   /* These are all the inherited methods from the MouseListener interface 
    *   some are used and some might not be used 
    *   "evt" is how we handle our mouse-click events */
-  public void mouseClicked( MouseEvent evt ) { /* CODE GOES IN HERE (or not) */ }
+  public void mouseClicked( MouseEvent evt ) {}
 
   public void mouseEntered( MouseEvent evt ) { /* CODE GOES IN HERE (or not) */ }
 
   public void mouseExited( MouseEvent evt ) { /* CODE GOES IN HERE (or not) */ }
 
-  public void mousePressed( MouseEvent evt ) { 
-    
-    Point pointClicked = evt.getLocationOnScreen();
-    Location locClicked = new Location( pointClicked ); //convert to location
+  public void mousePressed( MouseEvent evt ) {
+
+    Location locClicked = new Location( evt.getPoint() ); //convert to location
 
     if (!isHidden && button.contains( locClicked )) {
       //Makes the button lighter if pressed (temporarily)
@@ -70,8 +69,11 @@ public class Button implements MouseListener {
   }
 
   public void mouseReleased( MouseEvent evt ) {
-    button.setColor( color ); //reset button to original color
-    pageRef.buttonClicked(); //Signal to the page that the button is clicked
+    Location locClicked = new Location( evt.getPoint() ); //convert to location
+    if (!isHidden && button.contains( locClicked )) {
+      button.setColor( color ); //reset button to original color
+      pageRef.buttonClicked(); //Signal to the page that the button is clicked
+    }
   }
 
 

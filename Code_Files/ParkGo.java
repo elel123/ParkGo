@@ -2,8 +2,16 @@
 
 import Acme.*;
 import objectdraw.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class ParkGo extends WindowController {
+
+  Button butt;
+  private JTextField textField;
+  private JPanel frame;
+
 
   public static void main( String args[] ) {
 
@@ -22,6 +30,17 @@ public class ParkGo extends WindowController {
     //Make the window be the main focus when the program starts
     canvas.requestFocusInWindow();
 
+    butt = new Button( Color.blue, 30, 30, 200, 200, this, canvas );
+    
+    frame = new JPanel(); //This is where the text field will be
+    textField = new JTextField(20);
+    textField.setBounds( 20, 20, 100, 20 );
+    textField.setEditable(true);
+    frame.add( textField );
+    frame.setSize( 400, 100 );
+    this.add( frame, BorderLayout.NORTH );
+    this.validate();
+
 	} //end of the begin method
 
 
@@ -33,7 +52,9 @@ public class ParkGo extends WindowController {
 	} //end of the constructor
 
   //When buttons have been clicked, this method should be called. 
-  public void buttonClicked(/* Insert arguments here */) {}
+  public void buttonClicked(/* Insert arguments here */) {
+    System.out.println( "Button was clicked" );
+  }
 
 
 } //end of the ParkGo class
